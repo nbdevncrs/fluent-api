@@ -1,12 +1,11 @@
 using System;
 using System.Linq.Expressions;
-using ObjectPrinting.SettingsAppliers;
 
 namespace ObjectPrinting.Configs;
 
 public class PrintingConfig<TOwner>(PrintingSettings settings)
 {
-    public PrintingSettings Settings = settings;
+    public readonly PrintingSettings Settings = settings;
 
     public TypePrintingConfig<TOwner, TPropType> For<TPropType>()
     {

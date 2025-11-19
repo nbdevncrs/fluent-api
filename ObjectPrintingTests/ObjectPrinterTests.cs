@@ -1,6 +1,7 @@
 using FluentAssertions;
 using ObjectPrinting;
 using ObjectPrinting.Configs;
+using ObjectPrinting.Configs.Extensions;
 using ObjectPrintingTests.Models;
 
 namespace ObjectPrintingTests;

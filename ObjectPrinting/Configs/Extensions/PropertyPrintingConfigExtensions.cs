@@ -1,7 +1,7 @@
 using System;
-using System.Reflection;
+using ObjectPrinting.Configs.Interfaces;
 
-namespace ObjectPrinting.Configs;
+namespace ObjectPrinting.Configs.Extensions;
 
 public static class PropertyPrintingConfigExtensions
 {
@@ -12,9 +12,9 @@ public static class PropertyPrintingConfigExtensions
         ArgumentOutOfRangeException.ThrowIfNegative(maxLen);
 
         var parent = ((IChildPrintingConfig<TOwner, string>)config).ParentConfig;
-        
+
         var path = config.PropertyPath;
-        
+
         parent.Settings.StringTrimLengths[path] = maxLen;
 
         return parent;

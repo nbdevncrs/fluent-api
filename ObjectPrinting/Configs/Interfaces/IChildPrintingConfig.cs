@@ -1,6 +1,4 @@
-using ObjectPrinting.Configs;
-
-namespace ObjectPrinting;
+namespace ObjectPrinting.Configs.Interfaces;
 
 public interface IChildPrintingConfig<TOwner, TPropType>
 {
