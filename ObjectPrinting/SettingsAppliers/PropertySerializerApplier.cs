@@ -11,7 +11,7 @@ internal class PropertySerializerApplier : ISettingsApplier
     {
         if (settings.PropertySerializers.TryGetValue(node.Path, out var ser))
         {
-            node.Value = (string)ser.DynamicInvoke(node.Value)!;
+            node.Value = ser(node.Value);
             node.IsLeaf = true;
             node.Children.Clear();
             return;

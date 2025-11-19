@@ -11,7 +11,7 @@ internal class TypeSerializerApplier : ISettingsApplier
     {
         if (node.Type != null && settings.TypeSerializers.TryGetValue(node.Type, out var ser))
         {
-            node.Value = (string)ser.DynamicInvoke(node.Value)!;
+            node.Value = ser(node.Value);
             node.IsLeaf = true;
             node.Children.Clear();
             return;

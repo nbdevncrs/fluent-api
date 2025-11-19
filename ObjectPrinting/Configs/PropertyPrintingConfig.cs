@@ -21,10 +21,10 @@ public class PropertyPrintingConfig<TOwner, TPropType> : IChildPrintingConfig<TO
     {
         ArgumentNullException.ThrowIfNull(serializer);
 
-        printingConfig.Settings.PropertySerializers[PropertyPath] = serializer;
+        printingConfig.Settings.PropertySerializers[PropertyPath] = obj => serializer((TPropType)obj!);
         return printingConfig;
     }
-    
+
     public PrintingConfig<TOwner> Exclude()
     {
         printingConfig.Settings.ExcludedProperties.Add(PropertyPath);

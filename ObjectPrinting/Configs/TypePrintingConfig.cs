@@ -17,7 +17,7 @@ public class TypePrintingConfig<TOwner, TPropType> : IChildPrintingConfig<TOwner
     public PrintingConfig<TOwner> Use(Func<TPropType, string> serializer)
     {
         ArgumentNullException.ThrowIfNull(serializer);
-        printingConfig.Settings.TypeSerializers[typeof(TPropType)] = serializer;
+        printingConfig.Settings.TypeSerializers[typeof(TPropType)] = obj => serializer((TPropType)obj!);
         return printingConfig;
     }
 
