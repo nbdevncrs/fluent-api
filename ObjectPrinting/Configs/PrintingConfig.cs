@@ -1,5 +1,6 @@
 using System;
 using System.Linq.Expressions;
+using ObjectPrinting.PrintingHandlers;
 
 namespace ObjectPrinting.Configs;
 
@@ -19,7 +20,7 @@ public class PrintingConfig<TOwner>(PrintingSettings settings)
 
     public string PrintToString(TOwner obj)
     {
-        var context = PrintingContext.Build(obj, Settings);
-        return PrintingFormatter.Format(context);
+        var engine = new PrintingEngine(Settings);
+        return engine.Print(obj);
     }
 }
