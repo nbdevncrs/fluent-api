@@ -1,3 +1,4 @@
+using System.Globalization;
 using FluentAssertions;
 using ObjectPrinting;
 using ObjectPrinting.Configs;
@@ -18,6 +19,19 @@ public class ObjectPrinterTests
         var printer = ObjectPrinter.InClass<Person>();
         var result = printer.PrintToString(null);
         result.Should().Be("null");
+    }
+
+    [Test]
+    public void ObjectPrinter_ShouldPrintFullProperty_WhenSerializerReturnsNull_Test()
+    {
+        var person = new Person { Name = "Alex" };
+
+        var printer = ObjectPrinter.InClass<Person>()
+            .For(p => p.Name).Use(_ => null);
+
+        var result = printer.PrintToString(person);
+
+        result.Should().Contain("Name = Alex");
     }
 
     [Test]
@@ -138,7 +152,7 @@ public class ObjectPrinterTests
         };
 
         var printer = ObjectPrinter.InClass<Person>()
-            .For<double>().Use(new System.Globalization.CultureInfo("de-DE"));
+            .For<double>().Use(new CultureInfo("de-DE"));
 
         var result = printer.PrintToString(person);
         var expected = LoadExpected();
@@ -297,5 +311,48 @@ public class ObjectPrinterTests
 
         var expected = LoadExpected();
         result.Should().Be(expected);
+    }
+
+    [Test]
+    public void ObjectPrinter_ShouldFormatDateTime_WithCustomCulture_Test()
+    {
+        var date = new DateTime(2025, 5, 1, 13, 45, 0);
+
+        var printer = ObjectPrinter.InClass<DateTime>()
+            .For<DateTime>().Use(new CultureInfo("de-DE"));
+
+        var result = printer.PrintToString(date);
+
+        result.Should().Be("01.05.2025 13:45:00");
+    }
+
+    [Test]
+    public void ObjectPrinter_ShouldApplyTrimBeforeSerializer_Test()
+    {
+        var person = new Person { Name = "Alexander" };
+
+        var printer = ObjectPrinter
+            .InClass<Person>()
+            .For(p => p.Name).Trim(4)
+            .For(p => p.Name).Use(s => $"<{s}>");
+
+
+        var result = printer.PrintToString(person);
+
+        result.Should().Contain("<Alex>");
+    }
+
+    [Test]
+    public void ObjectPrinter_ShouldApplyCultureThenTypeSerializer_Test()
+    {
+        var person = new Person { Height = 1234.567 };
+
+        var printer = ObjectPrinter.InClass<Person>()
+            .For<double>().Use(new CultureInfo("fr-FR"))
+            .For<double>().Use(d => $"<{d}>");
+
+        var result = printer.PrintToString(person);
+
+        result.Should().Contain("<1234,567>");
     }
 }

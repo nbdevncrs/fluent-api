@@ -1,4 +1,4 @@
-Dictionary`2
+Dictionary`2 [
 	[0] = 
 		KeyValuePair`2
 			Key = one
@@ -7,3 +7,4 @@ Dictionary`2
 		KeyValuePair`2
 			Key = two
 			Value = 2
+]

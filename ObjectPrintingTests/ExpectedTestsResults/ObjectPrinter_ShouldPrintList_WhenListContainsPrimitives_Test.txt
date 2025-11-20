@@ -5,7 +5,8 @@ Person
 	Age = 10
 	Friend = null
 	Scores = 
-		List`1
+		List`1 [
 			[0] = 1
 			[1] = 2
 			[2] = 3
+		]
