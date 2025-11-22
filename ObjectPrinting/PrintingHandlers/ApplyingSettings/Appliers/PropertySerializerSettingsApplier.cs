@@ -2,7 +2,7 @@ using ObjectPrinting.PrintingHandlers.ApplyingSettings.Interfaces;
 
 namespace ObjectPrinting.PrintingHandlers.ApplyingSettings.Appliers;
 
-internal class PropertySerializerApplier : ISettingsApplier
+internal class PropertySerializerSettingsApplier : ISettingsApplier
 {
     public ApplierResult Apply(ValueContext context)
     {

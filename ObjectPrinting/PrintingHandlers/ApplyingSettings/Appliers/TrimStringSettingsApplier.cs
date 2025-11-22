@@ -2,7 +2,7 @@ using ObjectPrinting.PrintingHandlers.ApplyingSettings.Interfaces;
 
 namespace ObjectPrinting.PrintingHandlers.ApplyingSettings.Appliers;
 
-internal class TrimStringApplier : ISettingsApplier
+internal class TrimStringSettingsApplier : ISettingsApplier
 {
     public ApplierResult Apply(ValueContext context)
     {

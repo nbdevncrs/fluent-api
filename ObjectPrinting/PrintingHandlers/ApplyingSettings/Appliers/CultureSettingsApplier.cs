@@ -3,7 +3,7 @@ using ObjectPrinting.PrintingHandlers.ApplyingSettings.Interfaces;
 
 namespace ObjectPrinting.PrintingHandlers.ApplyingSettings.Appliers;
 
-internal class CultureApplier : ISettingsApplier
+internal class CultureSettingsApplier : ISettingsApplier
 {
     public ApplierResult Apply(ValueContext context)
     {

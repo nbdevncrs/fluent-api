@@ -7,11 +7,11 @@ internal class ApplierRunner
 {
     private readonly ISettingsApplier[] appliers =
     [
-        new ExcludeApplier(),
-        new TrimStringApplier(),
-        new PropertySerializerApplier(),
-        new TypeSerializerApplier(),
-        new CultureApplier()
+        new ExcludeSettingsApplier(),
+        new TrimStringSettingsApplier(),
+        new PropertySerializerSettingsApplier(),
+        new TypeSerializerSettingsApplier(),
+        new CultureSettingsApplier()
     ];
 
     public ApplierResult Run(ValueContext context)
