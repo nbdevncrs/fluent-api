@@ -31,7 +31,7 @@ namespace ObjectPrinting.PrintingHandlers.HandlingStrategies
                     Value = item,
                     Type = item?.GetType(),
                     Path = $"{context.Path}[{i}]",
-                    Indent = context.Indent,
+                    Indent = context.Indent + 1,
                     Settings = context.Settings,
                     Visited = context.Visited
                 };
@@ -39,26 +39,15 @@ namespace ObjectPrinting.PrintingHandlers.HandlingStrategies
                 var printed = recurse(childContext);
                 var prefix = new string('\t', context.Indent + 1);
 
-                if (printed == "")
-                {
-                    sb.Append(prefix).Append($"[{i}] = ").AppendLine("null");
-                }
-                else if (printed.Contains(Environment.NewLine))
-                {
-                    sb.Append(prefix).Append($"[{i}] = ").AppendLine();
-                    var lines = printed.Split([Environment.NewLine], StringSplitOptions.None);
-                    foreach (var line in lines)
-                        sb.Append(prefix).Append('\t').AppendLine(line);
-                }
-                else
-                {
-                    sb.Append(prefix).Append($"[{i}] = ").AppendLine(printed);
-                }
+                sb.Append(prefix).Append($"[{i}] = ");
+
+                sb.AppendLine(printed == "" ? "null" : printed);
 
                 i++;
             }
 
             sb.Append(new string('\t', context.Indent)).Append("]");
+
             return sb.ToString();
         }
     }
