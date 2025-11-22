@@ -9,12 +9,7 @@ namespace ObjectPrinting.PrintingHandlers.HandlingStrategies
     {
         public bool CanHandle(ValueContext context)
         {
-            switch (context.Value)
-            {
-                case null:
-                case string:
-                    return false;
-            }
+            if (context.Value is null or string) return false;
 
             var type = context.Type;
             if (type == null) return true;
