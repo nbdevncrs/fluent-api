@@ -29,6 +29,7 @@ public class ObjectPrinterAcceptanceTests
             .For(p => p.Name).Use(name => $"Current name is {name}")
 
             //5. Настроить обрезание строковых свойств
+            .For<string>().Trim(4)
             .For(p => p.Name).Trim(3)
 
             //6. Исключить конкретное свойство

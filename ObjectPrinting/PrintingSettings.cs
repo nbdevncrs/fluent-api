@@ -11,4 +11,5 @@ public class PrintingSettings
     public Dictionary<string, Func<object?, string>> PropertySerializers { get; } = new();
     public Dictionary<Type, IFormatProvider> TypeCultures { get; } = new();
     public Dictionary<string, int> StringTrimLengths { get; } = new();
+    public int GlobalStringTrimLength { get; set; } = 0;
 }
