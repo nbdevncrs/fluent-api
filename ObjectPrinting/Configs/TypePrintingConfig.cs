@@ -21,13 +21,6 @@ public class TypePrintingConfig<TOwner, TPropType> : IChildPrintingConfig<TOwner
         return printingConfig;
     }
 
-    public PrintingConfig<TOwner> Use(IFormatProvider formatProvider)
-    {
-        ArgumentNullException.ThrowIfNull(formatProvider);
-        printingConfig.Settings.TypeCultures[typeof(TPropType)] = formatProvider;
-        return printingConfig;
-    }
-
     public PrintingConfig<TOwner> Exclude()
     {
         printingConfig.Settings.ExcludedTypes.Add(typeof(TPropType));
