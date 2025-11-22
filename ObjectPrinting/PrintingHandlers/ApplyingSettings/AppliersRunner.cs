@@ -9,8 +9,7 @@ internal class ApplierRunner
     [
         new ExcludeSettingsApplier(),
         new TrimStringSettingsApplier(),
-        new PropertySerializerSettingsApplier(),
-        new TypeSerializerSettingsApplier(),
+        new SerializerSettingsApplier(),
         new CultureSettingsApplier()
     ];
 
