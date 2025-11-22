@@ -1,3 +1,4 @@
+using System;
 using ObjectPrinting.PrintingHandlers.ApplyingSettings.Interfaces;
 
 namespace ObjectPrinting.PrintingHandlers.ApplyingSettings.Appliers;
@@ -10,20 +11,15 @@ internal class TrimStringSettingsApplier : ISettingsApplier
             return ApplierResult.NotApplied;
 
         var settings = context.Settings;
-        
+
         if (settings.StringTrimLengths.TryGetValue(context.Path, out var propertyMax))
         {
-            var trimmed = s.Length <= propertyMax ? s : s[..propertyMax];
-            return ApplierResult.Modified(trimmed);
+            return ApplierResult.Modified(s.Length <= propertyMax ? s : s.AsSpan(0, propertyMax).ToString());
         }
-        
-        if (settings.GlobalStringTrimLength > 0)
-        {
-            var max = settings.GlobalStringTrimLength;
-            var trimmed = s.Length <= max ? s : s[..max];
-            return ApplierResult.Modified(trimmed);
-        }
-        
-        return ApplierResult.NotApplied;
+
+        if (settings.GlobalStringTrimLength <= 0) return ApplierResult.NotApplied;
+
+        var max = settings.GlobalStringTrimLength;
+        return ApplierResult.Modified(s.Length <= max ? s : s.AsSpan(0, max).ToString());
     }
 }
