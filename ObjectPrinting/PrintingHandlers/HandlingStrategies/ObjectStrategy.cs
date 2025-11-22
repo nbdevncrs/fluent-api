@@ -1,6 +1,7 @@
 using System;
 using System.Reflection;
 using System.Text;
+using ObjectPrinting.PrintingHandlers.HandlingStrategies.Helpers;
 using ObjectPrinting.PrintingHandlers.HandlingStrategies.Interfaces;
 
 namespace ObjectPrinting.PrintingHandlers.HandlingStrategies
@@ -12,10 +13,7 @@ namespace ObjectPrinting.PrintingHandlers.HandlingStrategies
             if (context.Value is null or string) return false;
 
             var type = context.Type;
-            if (type == null) return true;
-            if (type.IsPrimitive) return false;
-
-            return context.Value is not decimal && context.Value is not Guid;
+            return !type.IsTypePrimitive();
         }
 
         public string Print(ValueContext context, Func<ValueContext, string> recurse)
