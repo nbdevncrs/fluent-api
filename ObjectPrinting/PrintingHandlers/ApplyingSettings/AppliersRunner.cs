@@ -20,17 +20,9 @@ internal class ApplierRunner
 
         foreach (var applier in appliers)
         {
-            var localContext = new ValueContext
-            {
-                Value = currentValue,
-                Type = currentValue?.GetType() ?? context.Type,
-                Path = context.Path,
-                Indent = context.Indent,
-                Settings = context.Settings,
-                Visited = context.Visited
-            };
+            context.Value = currentValue;
 
-            var res = applier.Apply(localContext);
+            var res = applier.Apply(context);
             if (!res.Applied)
                 continue;
 
