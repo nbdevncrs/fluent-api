@@ -46,7 +46,7 @@ namespace ObjectPrinting.PrintingHandlers.HandlingStrategies
                 else if (printed.Contains(Environment.NewLine))
                 {
                     sb.Append(prefix).Append($"[{i}] = ").AppendLine();
-                    var lines = printed.Split(["\r\n", "\n"], StringSplitOptions.None);
+                    var lines = printed.Split([Environment.NewLine], StringSplitOptions.None);
                     foreach (var line in lines)
                         sb.Append(prefix).Append('\t').AppendLine(line);
                 }

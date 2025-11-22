@@ -61,7 +61,7 @@ namespace ObjectPrinting.PrintingHandlers.HandlingStrategies
                 {
                     sb.Append(prefix).Append(p.Name).Append(" = ").AppendLine();
                     var childIndent = new string('\t', context.Indent + 2);
-                    var lines = printed.Split(["\r\n", "\n"], StringSplitOptions.None);
+                    var lines = printed.Split([Environment.NewLine], StringSplitOptions.None);
 
                     foreach (var line in lines)
                         sb.Append(childIndent).AppendLine(line);
